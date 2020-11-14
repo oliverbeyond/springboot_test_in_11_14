@@ -1,0 +1,28 @@
+# 端口号
+server:
+  port: 8080
+
+# web前后缀
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+
+  # 在spring配置数据源
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/superdb?serverTimezone=UTC
+    username: root
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+
+# 设置别名
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  type-aliases-package: com.wn.pojo
+
+# 添加运行日志
+logging:
+  level:
+    com.wn.mapper: debug

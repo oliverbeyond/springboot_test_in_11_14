@@ -1,0 +1,28 @@
+# �˿ں�
+server:
+  port: 8080
+
+# webǰ��׺
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+
+  # ��spring��������Դ
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/superdb?serverTimezone=UTC
+    username: root
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+
+# ���ñ���
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  type-aliases-package: com.wn.pojo
+
+# ���������־
+logging:
+  level:
+    com.wn.mapper: debug
