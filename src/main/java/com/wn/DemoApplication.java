@@ -3,6 +3,8 @@ package com.wn;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
 /*@SpringBootApplication就是一个组合注解：
 
 -  @SpringBootConfiguration就是@Configuration注解，代表启动类就是一个配置类。
@@ -12,6 +14,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
    - 手动关闭自动装配指定内容：@SpringBootApplication(exclude = QuartzAutoConfiguration.class)
 -  @ComponentScan就相当于<context:component-scan basePackage=“包名” />，帮助扫描注解的。*/
 @SpringBootApplication
+/*开启事务支持，等同于xml配置方式的 <tx:annotation-driven />*/
+@EnableTransactionManagement
 /*添加一个mapper扫描*/
 @MapperScan(basePackages = "com/wn/mapper")
 

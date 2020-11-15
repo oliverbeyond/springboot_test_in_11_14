@@ -5,11 +5,7 @@ public class User {
     private String username;
     private Integer age;
     private String password;
-
-    @Override
-    public String toString() {
-        return "姓名:"+username;
-    }
+    private String roleid;
 
     public Integer getUserid() {
         return userid;
@@ -43,13 +39,40 @@ public class User {
         this.password = password;
     }
 
+    public String getRoleid() {
+        return roleid;
+    }
+
+    public void setRoleid(String roleid) {
+        this.roleid = roleid;
+    }
+
     public User() {
     }
 
-    public User(Integer userid, String username, Integer age, String password) {
+    public User(Integer userid, String username, String password, String roleid) {
+        this.userid = userid;
+        this.username = username;
+        this.password = password;
+        this.roleid = roleid;
+    }
+
+    public User(Integer userid, String username, Integer age, String password, String roleid) {
         this.userid = userid;
         this.username = username;
         this.age = age;
         this.password = password;
+        this.roleid = roleid;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userid=" + userid +
+                ", username='" + username + '\'' +
+                ", age=" + age +
+                ", password='" + password + '\'' +
+                ", roleid='" + roleid + '\'' +
+                '}';
     }
 }

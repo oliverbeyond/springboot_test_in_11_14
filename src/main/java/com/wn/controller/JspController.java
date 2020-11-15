@@ -20,6 +20,7 @@ public class JspController {
 
     /*ajax登录请求*/
     @RequestMapping("ajaxlogin")
+    /*加上@Responsebody后，会直接返回json数据*/
     public @ResponseBody
     Object queryUser(HttpServletRequest request, HttpSession session) throws Exception {
         HashMap<String, String> res = new HashMap();
@@ -36,7 +37,7 @@ public class JspController {
         }
     }
 
-    /*登录成功,带值跳转*/
+    /*ajax方式登录成功,带值跳转*/
     @RequestMapping("successlogin")
     public String successlogin(HttpSession session, Model model) {
         String usermessage = (String) session.getAttribute("usermessage");
@@ -45,7 +46,7 @@ public class JspController {
             return "redirect:index.jsp";
         } else {
             model.addAttribute("msg", usermessage);
-            return "home1";
+            return "admin_main";
         }
     }
 
@@ -60,11 +61,17 @@ public class JspController {
             model.addAttribute("msg", user);
             session.setAttribute("usermessage", user.getUsername());
             System.out.println(user);
-            return "home1";
+            return "admin_main";
         } else {
             /*如果那个默认添加的页面不合适,加一个重定向就好*/
             return "redirect:error.jsp";
         }
+    }
+
+    /*退出登录请求*/
+    @RequestMapping("quit")
+    public String login() {
+        return "redirect:index.jsp";
     }
 
 }

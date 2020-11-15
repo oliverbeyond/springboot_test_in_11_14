@@ -9,7 +9,7 @@ spring:
       prefix: /WEB-INF/jsp/
       suffix: .jsp
 
-  # 在spring配置数据源
+  # 在spring配置数据源,用简单的图书馆数据,数据库是superdb
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/superdb?serverTimezone=UTC
