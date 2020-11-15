@@ -18,6 +18,10 @@
     <label for="password">密码</label>
     <input type="password" class="form-control" id="password" placeholder="密码">
 </div>
+<div>
+    <label for="password">验证码</label>
+    <input type="text" class="form-control" id="captcha" placeholder="验证码"><img id="captcha_img" style="cursor:pointer" src="captcha.png">
+</div>
 <p style="text-align: right;color: #000000;position: absolute" id="info"></p></br>
 <button id="loginButton" class="btn btn-primary btn-block">登录</button>
 <%--写ajax--%>
@@ -26,13 +30,15 @@
         $("#loginButton").click(function () {
             var username = $("#username").val();
             var password = $("#password").val();
+            var thecaptcha = $("#captcha").val();
             $.ajax({
                 type: "post",
                 url: "/ajaxlogin",
                 /*要传给后端的数据*/
                 data: {
                     username: username,
-                    password: password
+                    password: password,
+                    captcha: thecaptcha
                 },
                 dataType: "json",
                 success: function (data) {
@@ -41,6 +47,8 @@
                     } else if (data.stateCode.trim() === "1") {
                         $("#info").text("正在登录...");
                         window.location.href = "/successlogin";
+                    }else if (data.stateCode.trim()==="-1"){
+                        $("#info").text("验证码不对!")
                     }
                 }
             });

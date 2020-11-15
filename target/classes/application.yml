@@ -9,7 +9,7 @@ spring:
       prefix: /WEB-INF/jsp/
       suffix: .jsp
 
-  # ��spring��������Դ
+  # ��spring��������Դ,�ü򵥵�ͼ�������,���ݿ���superdb
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/superdb?serverTimezone=UTC
