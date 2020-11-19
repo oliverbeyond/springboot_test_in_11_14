@@ -18,53 +18,35 @@
     <label for="password">密码</label>
     <input type="password" class="form-control" id="password" placeholder="密码">
 </div>
-<div>
-    <label for="password">验证码</label>
-    <input type="text" class="form-control" id="captcha" placeholder="验证码"><img id="captcha_img" style="cursor:pointer"
-                                                                                src="captcha.png">
-</div>
 <p style="text-align: right;color: #000000;position: absolute" id="info"></p></br>
-<button id="loginButton" class="btn btn-primary btn-block">登录</button>
-<button id="registerButton" class="btn btn-primary btn-block">注册</button>
+<button id="registerSubmitButton" class="btn btn-primary btn-block">提交</button>
 <%--写ajax--%>
 <script>
     $(document).ready(function () {
-        $("#loginButton").click(function () {
+        $("#registerSubmitButton").click(function () {
             var username = $("#username").val();
             var password = $("#password").val();
-            var thecaptcha = $("#captcha").val();
             $.ajax({
                 type: "post",
-                url: "/ajaxlogin",
+                url: "/ajaxregister",
                 /*要传给后端的数据*/
                 data: {
                     username: username,
-                    password: password,
-                    captcha: thecaptcha
+                    password: password
                 },
                 dataType: "json",
                 success: function (data) {
                     if (data.stateCode.trim() === "0") {
-                        $("#info").text("账号或密码不对!")
+                        $("#info").text("该账号有人注册了!")
                     } else if (data.stateCode.trim() === "1") {
-                        $("#info").text("正在登录...");
-                        window.location.href = "/successlogin";
+                        $("#info").text("正在注册...");
+                        window.location.href = "/quit";
                     } else if (data.stateCode.trim() === "-1") {
-                        $("#info").text("验证码不对!")
+                        $("#info").text("密码格式不对,长度8-18位,包含数字和字母!")
                     }
                 }
             });
 
-        })
-        $("#captcha_img").click(function () {
-
-            var random = Math.random();
-
-            $("#captcha_img")[0].src = "captcha.png?random=" + random; //为了避免缓存导致的验证码不刷新，所以加一个时间作为随机数，改变地址从而避免缓存
-
-        })
-        $("#registerButton").click(function (){
-            window.location.href = "/register";
         })
     });
 

@@ -28,11 +28,16 @@
             <td>${book.path}</td>
             <td>${book.num}</td>
             <td><a href="/editbook?bookid=${book.bookid}">修改</a>
-                <a href="/deletebook">删除</a></td>
+                <a href="/deletebook?bookid=${book.bookid}">删除</a></td>
         </tr>
-
     </c:forEach>
-
 </table>
+<button id="next">下一页</button>
+
+<script>
+    $(document).ready(function(){
+
+    })
+</script>
 </body>
 </html>

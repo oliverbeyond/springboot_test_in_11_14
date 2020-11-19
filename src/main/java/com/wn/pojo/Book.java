@@ -50,6 +50,13 @@ public class Book {
     public Book() {
     }
 
+    public Book(String bookname, String writer, String path, int num) {
+        this.bookname = bookname;
+        this.writer = writer;
+        this.path = path;
+        this.num = num;
+    }
+
     public Book(int bookid, String bookname, String writer, String path, int num) {
         this.bookid = bookid;
         this.bookname = bookname;

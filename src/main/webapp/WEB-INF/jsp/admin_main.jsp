@@ -11,7 +11,8 @@
 <body>
 <h3>${msg},您好</h3>
 <%--这些都是请求,不转jsp页面--%>
-<p><a href="/book">查看图书</a></p>
+<p><a href="/pages?pageNo=1&pagecurrent=1">查看图书</a></p>
+<p><a href="/upbooks">添加图书</a></p>
 <p><a href="/user">查看用户</a></p>
 <p><a href="/quit">退出登录</a></p>
 </body>

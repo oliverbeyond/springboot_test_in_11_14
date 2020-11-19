@@ -5,8 +5,12 @@ import com.wn.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.util.DigestUtils;
+
+
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
@@ -17,12 +21,11 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Random;
-
 @Controller
 public class JspController {
     @Autowired
     UserMapper userMapper;
-    private static String charArray = "0123456789";
+    private static String charArray = "0";
 
 
     /*ajax登录请求*/
@@ -34,11 +37,12 @@ public class JspController {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String captcha = request.getParameter("captcha");
-        System.out.println("我输入的验证码是:"+captcha);
-        User user = userMapper.login(username, password);
+        String passwored_sult = DigestUtils.md5DigestAsHex(password.getBytes());
+        System.out.println("我输入的验证码是:" + captcha);
+        User user = userMapper.login(username, passwored_sult);
         if (!captcha.equals(request.getSession().getAttribute("captcha"))) {
-                res.put("stateCode","-1");
-                return res;
+            res.put("stateCode", "-1");
+            return res;
         } else {
             if (user != null) {
                 res.put("stateCode", "1");
@@ -50,6 +54,27 @@ public class JspController {
             }
         }
     }
+
+    /*ajax注册请求*/
+    @RequestMapping("ajaxregister")
+    /*加上@Responsebody后，会直接返回json数据*/
+    public @ResponseBody
+    Object register(HttpServletRequest request, HttpSession session) throws Exception {
+        HashMap<String, String> res = new HashMap();
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        User user = userMapper.register(username);
+        if (user != null) {
+            res.put("stateCode", "0");
+            return res;
+        } else {
+            String passwored_sult = DigestUtils.md5DigestAsHex(password.getBytes());
+            userMapper.insert(username,passwored_sult);
+            res.put("stateCode", "1");
+            return res;
+        }
+    }
+
 
     /*ajax方式登录成功,带值跳转*/
     @RequestMapping("successlogin")
@@ -86,6 +111,12 @@ public class JspController {
     @RequestMapping("quit")
     public String login() {
         return "redirect:index.jsp";
+    }
+
+    /*注册请求*/
+    @RequestMapping("register")
+    public String register() {
+        return "redirect:register.jsp";
     }
 
     /*登录的验证码,这个不用返回值!直接请求完了写进输出流就输出了!*/
@@ -126,7 +157,7 @@ public class JspController {
 
         //将验证码存入session中
         request.getSession().setAttribute("captcha", stringBuilder.toString());
-        System.out.println("本次的验证码是:"+stringBuilder.toString());
+        System.out.println("本次的验证码是:" + stringBuilder.toString());
 
         //将上面的这个图片存入流中
         ImageIO.write(bufferedImage, "png", response.getOutputStream());

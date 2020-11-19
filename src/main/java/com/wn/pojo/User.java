@@ -6,6 +6,7 @@ public class User {
     private Integer age;
     private String password;
     private String roleid;
+    private byte pic;
 
     public Integer getUserid() {
         return userid;
@@ -50,12 +51,16 @@ public class User {
     public User() {
     }
 
+    public User(String bookname, String writer, String path, String num) {
+    }
+
     public User(Integer userid, String username, String password, String roleid) {
         this.userid = userid;
         this.username = username;
         this.password = password;
         this.roleid = roleid;
     }
+
 
     public User(Integer userid, String username, Integer age, String password, String roleid) {
         this.userid = userid;
@@ -65,6 +70,22 @@ public class User {
         this.roleid = roleid;
     }
 
+ /*   public User(String username, Integer age, String password, String roleid, String pic) {
+        this.username = username;
+        this.age = age;
+        this.password = password;
+        this.roleid = roleid;
+        this.pic = pic;
+    }
+
+    public String getPic() {
+        return pic;
+    }
+
+    public void setPic(String pic) {
+        this.pic = pic;
+    }
+*/
     @Override
     public String toString() {
         return "User{" +

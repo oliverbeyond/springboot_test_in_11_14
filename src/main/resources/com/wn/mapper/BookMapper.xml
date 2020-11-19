@@ -8,7 +8,19 @@
         select * from book
     </select>
 
+    <select id="pages" resultType="Book" parameterType="Integer">
+        select * from book limit #{pageNo},3
+    </select>
+
+    <select id="total" resultType="Integer">
+        select count(*) from book
+    </select>
+
+
+
     <delete id="deleteBook" parameterType="Integer">
         delete from book where bookid = #{bookid}
     </delete>
+
+
 </mapper>
