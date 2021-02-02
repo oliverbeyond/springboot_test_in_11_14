@@ -7,5 +7,7 @@
     <select id="queryUser" resultType="User">
         select * from user
     </select>
-
+    <select id="queryName" resultType="User" parameterType="String">
+        select * from user where username=#{username}
+    </select>
 </mapper>

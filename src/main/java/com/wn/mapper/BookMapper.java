@@ -13,6 +13,6 @@ public interface BookMapper {
     /*分页*/
     List<Book> pages(Integer pageNo);
     Integer total();
-    @Insert("insert into book(bookname,writer,path,num) values(#{bookname},#{writer},#{path},#{num})")
+    @Insert("insert into book(bookname,writer,path,num,pic) values(#{bookname},#{writer},#{path},#{num},#{pic})")
     Integer upbook(Book book);
 }

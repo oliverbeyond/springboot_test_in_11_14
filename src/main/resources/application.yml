@@ -1,15 +1,54 @@
-# �˿ں�
+# 端口号
 server:
   port: 8080
 
-# webǰ��׺
+# web前后缀
 spring:
   mvc:
     view:
       prefix: /WEB-INF/jsp/
       suffix: .jsp
+  resources:
+    static-locations: D:\MyPic\
+  #上传文件的配置
+  servlet:
+    multipart:
+      max-file-size: 6MB
+      max-request-size: 100MB
+    #redis相关配置
+  redis:
+    # 配置redis的主机地址，需要修改成自己的
+    host: 127.0.0.1
+    port: 6379
+    password:
+    timeout: 5000
+    jedis:
+      pool:
+        # 连接池中的最大空闲连接，默认值也是8。
+        max-idle: 500
+        # 连接池中的最小空闲连接，默认值也是0。
+        min-idle: 50
+        # 如果赋值为-1，则表示不限制；如果pool已经分配了maxActive个jedis实例，则此时pool的状态为exhausted(耗尽)
+        max-active: 1000
+        # 等待可用连接的最大时间，单位毫秒，默认值为-1，表示永不超时。如果超过等待时间，则直接抛出JedisConnectionException
+        max-wait: 2000
+  #发邮件
+  mail:
+    host: smtp.163.com
+    username: 17865565575@163.com
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          socketFactoryClass: javax.net.ssl.SSLSocketFactory
+        debug: true
+    password: a1341146595
+  # 配置时间格式
+  jackson:
+    date-format: yyyy-MM-dd
+    time-zone: GMT+8
 
-  # ��spring��������Դ,�ü򵥵�ͼ�������,���ݿ���superdb
+  # 在spring配置数据源,用简单的图书馆数据,数据库是superdb
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/superdb?serverTimezone=UTC
@@ -17,12 +56,16 @@ spring:
     password: 123456
     type: com.alibaba.druid.pool.DruidDataSource
 
-# ���ñ���
+# 告诉mapper.xml在哪
 mybatis:
   mapper-locations: classpath:mapper/*Mapper.xml
   type-aliases-package: com.wn.pojo
 
-# ����������־
+# 添加运行日志
 logging:
   level:
     com.wn.mapper: debug
+
+
+
+

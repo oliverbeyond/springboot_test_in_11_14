@@ -6,6 +6,15 @@ public class Book {
     private String writer;
     private String path;
     private int num;
+    private String pic;
+
+    public String getPic() {
+        return pic;
+    }
+
+    public void setPic(String pic) {
+        this.pic = pic;
+    }
 
     public int getBookid() {
         return bookid;
@@ -63,6 +72,14 @@ public class Book {
         this.writer = writer;
         this.path = path;
         this.num = num;
+    }
+
+    public Book(String bookname, String writer, String path, int num, String pic) {
+        this.bookname = bookname;
+        this.writer = writer;
+        this.path = path;
+        this.num = num;
+        this.pic = pic;
     }
 
     @Override

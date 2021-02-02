@@ -20,8 +20,12 @@
 </div>
 <p style="text-align: right;color: #000000;position: absolute" id="info"></p></br>
 <button id="registerSubmitButton" class="btn btn-primary btn-block">提交</button>
+<button id="phoneregister" class="btn btn-primary btn-block">手机号注册</button>
+
 <%--写ajax--%>
 <script>
+
+
     $(document).ready(function () {
         $("#registerSubmitButton").click(function () {
             var username = $("#username").val();
@@ -47,6 +51,11 @@
                 }
             });
 
+        })
+
+        /*手机号注册ajax方式*/
+        $("#phoneregister").click(function () {
+            window.location.href = "/phoneregister";
         })
     });
 

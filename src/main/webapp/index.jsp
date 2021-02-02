@@ -29,6 +29,27 @@
 <%--写ajax--%>
 <script>
     $(document).ready(function () {
+
+
+        $(function () {
+            $.ajax({
+                type: "post",
+                url: "/autologin",
+                /*要传给后端的数据*/
+                data: {},
+                dataType: "json",
+                success: function (data) {
+                    if (data.stateCode.trim() === "-1") {
+
+                    }else if (data.stateCode.trim() === "1") {
+                        window.location.href = "/successlogin";
+                    }
+                }
+            });
+        })
+
+
+        /*登录*/
         $("#loginButton").click(function () {
             var username = $("#username").val();
             var password = $("#password").val();
@@ -54,8 +75,9 @@
                     }
                 }
             });
-
         })
+
+        /*验证码*/
         $("#captcha_img").click(function () {
 
             var random = Math.random();
@@ -63,7 +85,8 @@
             $("#captcha_img")[0].src = "captcha.png?random=" + random; //为了避免缓存导致的验证码不刷新，所以加一个时间作为随机数，改变地址从而避免缓存
 
         })
-        $("#registerButton").click(function (){
+        /*注册*/
+        $("#registerButton").click(function () {
             window.location.href = "/register";
         })
     });

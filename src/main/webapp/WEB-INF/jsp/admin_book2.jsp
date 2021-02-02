@@ -17,6 +17,7 @@
         <td>作者</td>
         <td>路径</td>
         <td>剩余</td>
+        <td>图片</td>
         <td>操作</td>
         </thead>
     </tr>
@@ -27,9 +28,14 @@
             <td>${pages.writer}</td>
             <td>${pages.path}</td>
             <td>${pages.num}</td>
-            <td><a href="/editbook?bookid=${pages.bookid}">修改</a>
-                <a href="/deletebook?bookid=${pages.bookid}">删除</a></td>
-
+            <td>
+                <img src="/image/${pages.pic}">
+            </td>
+            <td>
+                <a href="/editbook?bookid=${pages.bookid}">修改</a>
+                <a href="/deletebook?bookid=${pages.bookid}">删除</a>
+                <a href="/download?filename=${pages.pic}">下载</a>
+            </td>
         </tr>
     </c:forEach>
 </table>

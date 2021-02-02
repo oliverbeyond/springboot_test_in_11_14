@@ -70,22 +70,29 @@ public class User {
         this.roleid = roleid;
     }
 
- /*   public User(String username, Integer age, String password, String roleid, String pic) {
+    public User(String username, Integer age, String password, String roleid) {
         this.username = username;
         this.age = age;
         this.password = password;
         this.roleid = roleid;
-        this.pic = pic;
     }
 
-    public String getPic() {
-        return pic;
-    }
+    /*   public User(String username, Integer age, String password, String roleid, String pic) {
+            this.username = username;
+            this.age = age;
+            this.password = password;
+            this.roleid = roleid;
+            this.pic = pic;
+        }
 
-    public void setPic(String pic) {
-        this.pic = pic;
-    }
-*/
+        public String getPic() {
+            return pic;
+        }
+
+        public void setPic(String pic) {
+            this.pic = pic;
+        }
+    */
     @Override
     public String toString() {
         return "User{" +

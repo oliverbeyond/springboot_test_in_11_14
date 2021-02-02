@@ -9,29 +9,30 @@
     <script src="static/js/js.cookie.js"></script>
 </head>
 <body>
-<div>
-    <label for="bookname">书名</label>
-    <input type="text" class="form-control" id="bookname" placeholder="书名">
-</div>
-<div>
-    <label for="writer">作者</label>
-    <input type="text" class="form-control" id="writer" placeholder="作者">
-</div>
-<div>
-    <label for="path">路径</label>
-    <input type="text" class="form-control" id="path" placeholder="路径">
-</div>
-<div>
-    <label for="num">数量</label>
-    <input type="text" class="form-control" id="num" placeholder="数量">
-</div>
-
-<div>
-    <label for="pic">上传图片</label>
-    <input type="file" class="form-control" id="pic" placeholder="图片">
-</div>
-
-<button id="upbook">提交</button>
+<form action="/upbook" method="post" enctype="multipart/form-data">
+    <div>
+        <label for="bookname">书名</label>
+        <input type="text" class="form-control" id="bookname" placeholder="书名" name="bookname">
+    </div>
+    <div>
+        <label for="writer">作者</label>
+        <input type="text" class="form-control" id="writer" placeholder="作者" name="writer">
+    </div>
+    <div>
+        <label for="path">路径</label>
+        <input type="text" class="form-control" id="path" placeholder="路径" name="path">
+    </div>
+    <div>
+        <label for="num">数量</label>
+        <input type="text" class="form-control" id="num" placeholder="数量" name="num">
+    </div>
+    <div>
+        <label for="file">上传图片</label>
+        <input type="file" class="form-control" id="file" placeholder="图片" name="file">
+    </div>
+    <input type="submit" value="form提交">
+</form>
+<button id="upbook">ajax提交</button>
 <script>
     $(document).ready(function () {
         $("#upbook").click(function () {
@@ -39,7 +40,9 @@
             var writer = $("#writer").val();
             var path = $("#path").val();
             var num = $("#num").val();
+/*
             var pic = $("#pic").val();
+*/
             $.ajax({
                 type: "post",
                 url: "/upbook",
@@ -48,8 +51,10 @@
                     bookname: bookname,
                     writer: writer,
                     path: path,
-                    num: num,
+                    num: num
+/*
                     pic: pic
+*/
                 },
                 dataType: "json",
                 success: function (data) {
