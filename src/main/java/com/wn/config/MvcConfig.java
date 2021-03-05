@@ -28,7 +28,7 @@ public class MvcConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/index.jsp", "/register.jsp", "/phoneregister.jsp", "/index2.jsp", "/error.jsp",
                         "/ajaxlogin","/static/**","/admin/login","/autologin","/sendcaptcha","/phoneregister","/register","/quit","/ajaxregister"
                         , "/**/*.css", "/**/*.js", "/**/*.png", "/**/*.jpg",
-                        "/**/*.jpeg", "/**/*.gif", "/**/fonts/*", "/**/*.svg","/image/**");
+                        "/**/*.jpeg", "/**/*.gif", "/**/fonts/*", "/**/*.svg","/image/**","/ajaxlogin/**");
 /*        registry.addInterceptor(new LocaleChangeInterceptor())
                 .addPathPatterns("/**")
                 .excludePathPatterns("/index.jsp","/register.jsp","/phoneregister.jsp","/index2.jsp","/error.jsp");
